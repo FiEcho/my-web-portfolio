@@ -16,10 +16,17 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite('resources/css/app.css')
+
+    {{-- Style --}}
+    <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
 </head>
 
 <body>
-    <div id="app">
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    {{-- <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -37,9 +44,11 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.home') }}" class="nav-link">Home</a>
                         </li>
+
                         <li class="nav-item">
                             <a href="{{ route('admin.product.index') }}" class="nav-link">Produk</a>
                         </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -65,26 +74,32 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                                    <a class="dropdown-item" href="{{ route('admin.profile.index') }}"
+                                        onclick="document.ge
+                                    ('prfile')">Profile</a>
+                            <li class="dropdown-menu" id="profile">
+                                <a href="{{ route('admin.profile.index') }}" class="nav-link">Profile</a>
                             </li>
-                        @endguest
-                    </ul>
-                </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                    </div>
+                    </li>
+                @endguest
+                </ul>
             </div>
-        </nav>
+    </div>
+    </nav> --}}
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+    <main class="py-4">
+        @yield('content')
+    </main>
     </div>
 </body>
 
