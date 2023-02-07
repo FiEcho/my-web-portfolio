@@ -1,11 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Admin;
 
-use App\Models\Product;
 use Illuminate\View\Component;
 
-class FormEdit extends Component
+class formProfile extends Component
 {
     /**
      * Create a new component instance.
@@ -24,6 +23,6 @@ class FormEdit extends Component
      */
     public function render()
     {
-        return view('layouts.form-edi');
+        return view('admin.profile.form');
     }
 }

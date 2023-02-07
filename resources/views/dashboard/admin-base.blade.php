@@ -1,4 +1,8 @@
-@props([])
+@props([
+    'title' => '',
+    'page' => '',
+    'iconClass' => '',
+])
 
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -10,7 +14,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -61,72 +65,60 @@
     </style>
 </head>
 
-<body class="bg-gray-50">
+<body>
+
     <div>
         <div class="sidebar p-4" id="sidebar">
             <h4 class="mb-5 text-white">My Web</h4>
-
             <li>
-                <a class="text-white" href="{{ route('admin.home') }}">
-                    <i class="bi bi-house mr-2"></i>
+                <a class="text-zinc-400" href="{{ route('admin.home') }}">
+                    <i class="fa-solid fa-house mr-2 mb-1"></i>
                     Dashboard
                 </a>
             </li>
 
             <li>
-                <a class="text-white" href="{{ route('admin.product.index') }}">
-                    <i class="bi bi-box2-fill mr-2"></i>
+                <a class="text-zinc-400" href="{{ route('admin.product.index') }}">
+                    <i class="fa-solid fa-box mr-2 mb-1"></i>
                     Product
                 </a>
             </li>
 
+            <li>
+                <a class="text-zinc-400" href="{{ route('admin.product.index') }}">
+                    <i class="fa-solid fa-person mr-2 mb-1"></i>
+                    My Skills
+                </a>
+            </li>
 
+            <li>
+                <a class="text-zinc-400" href="{{ route('admin.product.index') }}">
+                    <i class="fa-solid fa-list mr-2 mb-1"></i>
+                    Project
+                </a>
+            </li>
 
-
+            <li>
+                <a class="text-zinc-400" href="{{ route('admin.product.index') }}">
+                    <i class="fa-solid fa-briefcase mr-2 mb-1"></i>
+                    My Work
+                </a>
+            </li>
         </div>
-        </li>
     </div>
-    </div>
-    <div class="p-8" id="main-content">
-        <div class="relative h-10 w-15 mb-5">
-            <div class="absolute left-0 top-0 h-16 w-16">
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('admin.profile.index') }}"
-                            onclick="document.ge
-                            ('prfile')">
-                            <i class="bi bi-person-circle mr-2"></i>
-                            Profile</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            <i class="bi bi-box-arrow-left mr-2"></i>
-                            {{ __('Logout') }}
-                        </a>
-
-                <li class="dropdown-menu" id="profile">
-                    <i class="bi bi-person-circle"></i>
-                    <a href="{{ route('admin.profile.index') }}" class="nav-link">Profile</a>
-                </li>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </div>
+    <div class="" id="main-content">
+        <div class="mb-4">
+            <x-dashboard.header page="{{ $page }}" />
         </div>
-        </li>
-        <button class="btn btn-dark" id="button-toggle">
+        <button class="btn btn-dark m-3" id="button-toggle">
             <i class="bi bi-list"></i>
         </button>
 
-
-        <div class="card  mt-3 shadow  bg-body rounded border border-0">
-            <div class="card-body ">
-                {{ $slot }}
+        <div class="grid grid-cols-1 gap-4 mb-4">
+            <div class="card  mt-3 shadow  bg-body rounded border border-0 m-3">
+                <div class="card-body ">
+                    {{ $slot }}
+                </div>
             </div>
         </div>
     </div>
@@ -143,6 +135,16 @@
             document.getElementById("main-content").classList.toggle("active-main-content");
         });
     </script>
+
+
+
 </body>
 
+
 </html>
+{{--
+
+<body class="bg-gray-50">
+
+
+</body> --}}

@@ -1,4 +1,4 @@
-<x-SlideNav>
+<x-admin.base title="Product | Create" page="Product | Create">
     <div class="card-body ">
         <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -7,4 +7,4 @@
             <x-form-component />
 
         </form>
-</x-SlideNav>
+</x-admin.base>

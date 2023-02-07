@@ -1,11 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Admin;
 
 use Illuminate\View\Component;
 
-class SlideNav extends Component
+class Base extends Component
 {
+
     /**
      * Create a new component instance.
      *
@@ -13,7 +14,7 @@ class SlideNav extends Component
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
@@ -23,6 +24,7 @@ class SlideNav extends Component
      */
     public function render()
     {
-        return view('dashboard.base.slide-navbar');
+
+        return view('dashboard.admin-base');
     }
 }

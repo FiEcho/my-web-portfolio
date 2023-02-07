@@ -26,6 +26,32 @@
                                 @enderror
                             </div>
 
+                            <div class="form-floating mb-3 ">
+                                <input type="text" class="form-control  @error('alamat') is-invalid @enderror"
+                                    name="alamat" id="floatingInput" value="{{ old('alamat') }}" required
+                                    autocomplete="alamat" autofocus>
+                                <label for="alamat">{{ __('Alamat') }}</label>
+
+                                @error('alamat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-floating mb-3 ">
+                                <input type="number" class="form-control  @error('no_hp') is-invalid @enderror"
+                                    name="no_hp" id="floatingInput" value="{{ old('no_hp') }}" required
+                                    autocomplete="no_hp" autofocus>
+                                <label for="no_hp">{{ __('No Hp') }}</label>
+
+                                @error('no_hp')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
 
                             <div class="form-floating mb-3 ">
                                 <input type="email" class="form-control  @error('email') is-invalid @enderror"

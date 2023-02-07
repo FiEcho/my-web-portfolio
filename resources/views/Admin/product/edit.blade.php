@@ -1,4 +1,4 @@
-<x-SlideNav>
+<x-admin.base title="Product | Edit" page="Product | Edit">
     <form action="{{ route('admin.product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -12,4 +12,4 @@
         </x-form-component>
 
     </form>
-</x-SlideNav>
+</x-admin.base>

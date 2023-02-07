@@ -5,13 +5,13 @@
         <div class="alert alert-danger mt-2">{{ $message }}</div>
     @enderror
     <x-textarea forLabel="Deskripsi" label-class="form-label" label-text="Deskripsi" name="deskripsi" id="deskripsi"
-        cols="5" rows="5" textarea-class="form-control" />
+        cols="5" rows="5" textarea-class="form-control" text="{{ old('deskripsi') }}" />
     @error('deskripsi')
         <div class="alert alert-danger mt-2">{{ $message }}</div>
     @enderror
 
     <x-input forLabel="Harga" label-class="form-label" label-text="Harga" input-class="form-control mb-2"
-        placeholder="Masukkan Harga" input-type="number" name="harga" id="harga" />
+        value="{{ old('harga') }}" input-type="number" name="harga" id="harga" />
     @error('harga')
         <div class="alert alert-danger mt-2">{{ $message }}</div>
     @enderror

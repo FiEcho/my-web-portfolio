@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 
 Route::resource('/product', 'ProductController');
+Route::get('header', function () {
+    return view('components.dashboard.slide');
+});
 
 Auth::routes();
 

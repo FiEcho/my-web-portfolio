@@ -19,5 +19,3 @@
 
 <input type="{{ $inputType }}" name="{{ $name }}" id="{{ $id }}" class="{{ $inputClass }}"
     placeholder="{{ $placeholder }}" value="{{ $value }}">
-
-<a href="{{ $url }}" class="{{ $urlClass }}">{{ $urlName }}</a>
