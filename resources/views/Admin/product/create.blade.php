@@ -4,7 +4,7 @@
             @csrf
             @method('POST')
             <h3>Tambah Produk</h3>
-            <x-form-component />
+            @include('layouts.form-create')
 
         </form>
 </x-admin.base>

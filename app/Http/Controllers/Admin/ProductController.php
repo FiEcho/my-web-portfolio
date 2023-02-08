@@ -64,7 +64,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $adminRoute = $this->adminRoute;
-        return \view($adminRoute.'show',\compact(['product'],'adminRoute'));
+        return \view($adminRoute.'show')->with('product',$product);
     }
 
     /**

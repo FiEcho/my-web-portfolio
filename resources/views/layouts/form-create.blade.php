@@ -1,28 +1,21 @@
 <div>
     <x-input forLabel="NamaProduk" label-class="form-label" label-text="Nama Produk" input-class="form-control mb-2"
-        placeholder="Masukkan Nama" value="{{ old('nama', $product->nama) }}" input-type="text" name="nama" id="nama" />
+        placeholder="Masukkan Nama" value="{{ old('nama') }}" input-type="text" name="nama" id="nama" />
     @error('nama')
         <div class="alert alert-danger mt-2">{{ $message }}</div>
     @enderror
     <x-textarea forLabel="Deskripsi" label-class="form-label" label-text="Deskripsi" name="deskripsi" id="deskripsi"
-        cols="5" rows="5" textarea-class="form-control" text="{{ old('nama', $product->deskripsi) }}" />
+        cols="5" rows="5" textarea-class="form-control" text="{{ old('deskripsi') }}" />
     @error('deskripsi')
         <div class="alert alert-danger mt-2">{{ $message }}</div>
     @enderror
 
     <x-input forLabel="Harga" label-class="form-label" label-text="Harga" input-class="form-control mb-2"
-        value="{{ old('nama', $product->harga) }}" input-type="number" name="harga" id="harga" />
+        value="{{ old('harga') }}" placeholder="Masukkan Harga" input-type="number" name="harga" id="harga" />
     @error('harga')
         <div class="alert alert-danger mt-2">{{ $message }}</div>
     @enderror
 
-    @if (!empty($product->gambar))
-        <div class="mb-1">
-            <h5>Gambar Sebelumya</h5>
-
-            <img src="{{ asset('storage/' . $product->gambar) }}" width="100px"alt="" srcset="">
-        </div>
-    @endif
 
     <x-input forLabel="Gambar" label-class="form-label" label-text="Gambar"
         input-class="form-control mb-2 form-control-sm" placeholder="Masukkan Gambar" input-type="file" name="gambar"

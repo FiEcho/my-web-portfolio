@@ -4,21 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\ProfileRequest;
-use App\Service\ProfileService;
 
-class ProfileController extends Controller
+class SkillController extends Controller
 {
-    public string $profileView = 'Admin.profile.';
-    private ProfileService $profileService;
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->profileService = new ProfileService;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -26,10 +14,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-
-        $profileView = $this->profileView;
-        $user = User::all();
-        return \view($profileView.'index',\compact('user'));
+        return \view('Admin.myskill.index');
     }
 
     /**
@@ -72,10 +57,9 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $profileView = $this->profileView;
-        $user = User::find($id);
-        return \view($profileView.'edit',\compact('user'));
+        //
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -83,11 +67,9 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProfileRequest $request, User $user,$id)
+    public function update(Request $request, $id)
     {
-        $profileView = $this->profileView;
-        $user = $this->profileService->update($request,$user,$id);
-        return \to_route('admin.profile.index');
+        //
     }
 
     /**

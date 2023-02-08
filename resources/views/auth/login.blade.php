@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6 col-sm-4">
+            <div class="col-md-4 col-sm-4">
                 <div class="card mt-5 shadow p-3 mb-5 bg-body rounded border border-0">
                     <div>
                         <h3 class="text-center">{{ __('Login') }}</h3>
@@ -61,7 +61,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-12 offset-md-0 d-flex">
                                     <button type="submit"
-                                        class="content-center px-20 py-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ">
+                                        class="content-center w-full  py-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ">
                                         {{ __('Login') }}
                                     </button>
 

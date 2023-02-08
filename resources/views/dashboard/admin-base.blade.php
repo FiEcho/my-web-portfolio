@@ -84,8 +84,9 @@
                 </a>
             </li>
 
+
             <li>
-                <a class="text-zinc-400" href="{{ route('admin.product.index') }}">
+                <a class="text-zinc-400" href="{{ route('admin.MySkill.index') }}">
                     <i class="fa-solid fa-person mr-2 mb-1"></i>
                     My Skills
                 </a>
@@ -114,14 +115,14 @@
             <i class="bi bi-list"></i>
         </button>
 
-        <div class="grid grid-cols-1 gap-4 mb-4">
-            <div class="card  mt-3 shadow  bg-body rounded border border-0 m-3">
-                <div class="card-body ">
-                    {{ $slot }}
-                </div>
+
+        <div class="card grid h-100 md:h-56 rounded-lg mt-3 shadow  bg-body rounded border border-0 m-3">
+            <div class="card-body ">
+                {{ $slot }}
             </div>
         </div>
     </div>
+
 
     <script>
         // event will be executed when the toggle-button is clicked

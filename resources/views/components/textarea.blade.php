@@ -8,6 +8,7 @@
     'labelClass' => '',
     'forLabel' => '',
     'labelText' => '',
+    'disabled' => false,
 ])
 
 
@@ -16,5 +17,5 @@
     <label for="{{ $forLabel }}" class="{{ $labelClass }}">{{ $labelText }}</label>
 
     <textarea name="{{ $name }}" id="{{ $id }}" cols="{{ $cols }}" rows="{{ $rows }}"
-        class="{{ $textareaClass }}">{{ $text }}</textarea>
+        class="{{ $textareaClass }}" {{ $disabled ? 'disabled' : '' }}>{{ $text }}</textarea>
 </div>
