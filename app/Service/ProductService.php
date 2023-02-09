@@ -5,6 +5,8 @@ namespace App\Service;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class ProductService
 {
@@ -17,9 +19,9 @@ class ProductService
         $this->product = new Product();
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $product = Product::all();
+        $product = $this->product->query();
         return $product;
     }
 

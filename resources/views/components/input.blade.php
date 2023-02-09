@@ -11,6 +11,7 @@
     'url' => '',
     'urlName' => '',
     'urlClass' => '',
+    'disabled' => false,
 ])
 
 
@@ -18,6 +19,4 @@
 <label for="{{ $forLabel }}" class="{{ $labelClass }}">{{ $labelText }}</label>
 
 <input type="{{ $inputType }}" name="{{ $name }}" id="{{ $id }}" class="{{ $inputClass }}"
-    placeholder="{{ $placeholder }}" value="{{ $value }}">
-
-<a href="{{ $url }}" class="{{ $urlClass }}">{{ $urlName }}</a>
+    placeholder="{{ $placeholder }}" value="{{ $value }}" {{ $disabled ? 'disabled' : '' }}>

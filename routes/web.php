@@ -19,7 +19,10 @@ Route::get('/', function () {
 
 
 Route::resource('/product', 'ProductController');
+Route::get('header', function () {
+    return view('components.dashboard.slide');
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
