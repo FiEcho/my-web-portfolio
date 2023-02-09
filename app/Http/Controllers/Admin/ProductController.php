@@ -8,6 +8,8 @@ use App\Service\ProductService;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 
+use function GuzzleHttp\Promise\all;
+
 class ProductController extends Controller
 {
     public string $adminRoute = 'admin.product.';
@@ -24,10 +26,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $adminRoute = $this->adminRoute;
-        $product = $this->productService->index();
+        $product = $this->productService->index($request)->paginate(10);
         return view($adminRoute.'index',compact(['product'],'adminRoute'));
     }
 
