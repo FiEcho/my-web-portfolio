@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileRequest;
-use App\Service\ProfileService;
+use App\Services\ProfileService;
 
 class ProfileController extends Controller
 {

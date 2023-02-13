@@ -41,6 +41,7 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->register(Flugg\Responder\ResponderServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Return The Application

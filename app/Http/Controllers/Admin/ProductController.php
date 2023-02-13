@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Service\ProductService;
+use App\Services\ProductService;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 
@@ -29,7 +29,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $adminRoute = $this->adminRoute;
-        $product = $this->productService->index($request)->paginate(10);
+        $response = $this->productService->index($request);
+        $product = $response->data->get();
         return view($adminRoute.'index',compact(['product'],'adminRoute'));
     }
 
@@ -79,8 +80,7 @@ class ProductController extends Controller
     {
         $adminRoute = $this->adminRoute;
         $product = Product::find($id);
-        $all = Product::all();
-        return \view($adminRoute.'edit',\compact('product','all'));
+        return \view($adminRoute.'edit',\compact('product'));
     }
 
     /**

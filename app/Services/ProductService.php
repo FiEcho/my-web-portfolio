@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Throwable;
+use App\Services\BaseService;
 
-class ProductService
+class ProductService extends BaseService
 {
     private $product;
     private ?string $gambarBaru = null;
@@ -19,10 +21,10 @@ class ProductService
         $this->product = new Product();
     }
 
-    public function index(Request $request)
+    public function index(Request $request):object
     {
         $product = $this->product->query();
-        return $product;
+        return $this->response(true,'selamat anda berhasil',$product);
     }
 
     public function store(ProductRequest $request) : Product

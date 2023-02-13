@@ -11,7 +11,6 @@
                 <thead>
                     <tr>
                         <th scope="col">Nama Produk</th>
-                        <th scope="col">Deskripsi</th>
                         <th scope="col">Harga</th>
                         <th scope="col">Gambar</th>
                         <th scope="col">Aksi</th>
@@ -21,7 +20,6 @@
                     @foreach ($product as $p)
                         <tr>
                             <td>{{ $p->nama }}</td>
-                            <td>{{ $p->deskripsi }}</td>
                             <td>{{ number_format($p->harga, 2, ',', '.') }}</td>
                             <td><img src="{{ asset('storage/' . $p->gambar) }}" alt="" width="100px">
                             </td>

@@ -154,11 +154,16 @@ return [
     |
     */
 
+
+    'Responder' => Flugg\Responder\Facades\Responder::class,
+    'Transformation' => Flugg\Responder\Facades\Transformation::class,
+
     'providers' => [
 
         /*
          * Laravel Framework Service Providers...
          */
+        Flugg\Responder\ResponderServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -194,7 +199,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
