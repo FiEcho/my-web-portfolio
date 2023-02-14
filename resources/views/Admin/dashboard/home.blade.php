@@ -1,4 +1,4 @@
-<x-admin.base title="My Web" page="Dashboard">
+<x-admin.base title="" page="Dashboard" subpage="Dashboard" mainClass1="p-5">
     <div class="mb-5">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -10,8 +10,8 @@
         </div>
     </div>
     <div class="grid  grid-rows-4 md:grid-cols-4 gap-4 ">
-        <div class="flex items-center justify-center h-24 card bg-gray-300 dark:bg-gray-800 border-none ">
-            <a class=" text-2xl text-gray-800 dark:text-gray-500" href="{{ route('admin.product.index') }}">
+        <div class="flex items-center justify-center h-24 card bg-green-200 dark:bg-gray-800 border-none ">
+            <a class=" text-2xl text-green-800 dark:text-gray-500" href="{{ route('admin.product.index') }}">
                 <i class="fa-solid fa-box mr-2 mb-1"></i>
                 Product
             </a>

@@ -2,6 +2,9 @@
     'title' => '',
     'page' => '',
     'iconClass' => '',
+    'subpage' => '',
+    'mainClass1' => '',
+    'mainClass2' => '',
 ])
 
 <!doctype html>
@@ -14,7 +17,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title }}</title>
+    <title>{{ $brand }}{{ $title }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,8 +28,10 @@
     @vite('resources/css/app.css')
 
 
+    @include('sweetalert::alert')
+
     {{-- Style --}}
-    <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/style/style.css') }}">
 
     <style>
         li {
@@ -69,7 +74,11 @@
 
     <div>
         <div class="sidebar p-4" id="sidebar">
-            <h4 class="mb-5 text-white">My Web</h4>
+            <div class="p-2 mb-10">
+                <a href="">
+                    <img src="{{ asset('assets/image/Logo.png') }}" class="w-32" alt="" srcset="">
+                </a>
+            </div>
             <li>
                 <a class="text-zinc-400" href="{{ route('admin.home') }}">
                     <i class="fa-solid fa-house mr-2 mb-1"></i>
@@ -109,43 +118,23 @@
     </div>
     <div class="" id="main-content">
         <div class="mb-4">
-            <x-dashboard.header page="{{ $page }}" />
+            <x-dashboard.header page="{{ $page }}" subpage="{{ $subpage }}" />
         </div>
         <button class="btn btn-dark m-3" id="button-toggle">
             <i class="bi bi-list"></i>
         </button>
 
 
-        <div class="card grid h-100 md:h-56 rounded-lg mt-3 shadow  bg-body rounded border border-0 m-3">
-            <div class="card-body ">
+        <div class="{{ $mainClass1 }}">
+            <div class="{{ $mainClass2 }}">
                 {{ $slot }}
             </div>
         </div>
     </div>
 
-
-    <script>
-        // event will be executed when the toggle-button is clicked
-        document.getElementById("button-toggle").addEventListener("click", () => {
-
-            // when the button-toggle is clicked, it will add/remove the active-sidebar class
-            document.getElementById("sidebar").classList.toggle("active-sidebar");
-
-
-            // when the button-toggle is clicked, it will add/remove the active-main-content class
-            document.getElementById("main-content").classList.toggle("active-main-content");
-        });
-    </script>
-
-
-
+    {{-- Script --}}
+    <script src="{{ asset('assets/script/script.js') }}"></script>
 </body>
 
 
 </html>
-{{--
-
-<body class="bg-gray-50">
-
-
-</body> --}}

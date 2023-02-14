@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileRequest;
 use App\Services\ProfileService;
+use Exception;
 
 class ProfileController extends Controller
 {
@@ -33,38 +34,6 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -85,9 +54,15 @@ class ProfileController extends Controller
      */
     public function update(ProfileRequest $request, User $user,$id)
     {
-        $profileView = $this->profileView;
-        $user = $this->profileService->update($request,$user,$id);
-        return \to_route('admin.profile.index');
+        try{
+            $this->profileView;
+            $user = $this->profileService->update($request,$user,$id);
+
+            return to_route('admin.profile.index')->withSuccess('Data updaate successfully!');;
+        } catch (Exception $e){
+            alert('Whoops','Data not Found','errors');
+            return redirect()->back();
+        }
     }
 
     /**

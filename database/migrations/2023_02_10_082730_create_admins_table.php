@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->text('alamat');
             $table->bigInteger('no_hp');
+            $table->string('password');
+            $table->string('role');
             $table->timestamps();
         });
     }

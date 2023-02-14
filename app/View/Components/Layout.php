@@ -1,13 +1,11 @@
 <?php
 
-namespace App\View\Components\Admin;
+namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Base extends Component
+class Layout extends Component
 {
-
-    public string $brand = 'My Web';
     /**
      * Create a new component instance.
      *
@@ -15,7 +13,7 @@ class Base extends Component
      */
     public function __construct()
     {
-
+        //
     }
 
     /**
@@ -25,7 +23,6 @@ class Base extends Component
      */
     public function render()
     {
-        $brand = $this->brand;
-        return view('dashboard.admin-base',['brand'=> $brand]);
+        return view('layouts.app');
     }
 }

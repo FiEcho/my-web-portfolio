@@ -39,7 +39,7 @@ class LoginController extends Controller
     }
 
     public function index(){
-
-        return \view('auth.login');
+        \toast('success', 'Data deleted successfully!');
+        return \to_route('auth.login');
     }
 }

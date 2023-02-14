@@ -1,5 +1,6 @@
 @props([
     'page' => '',
+    'subpage' => '',
 ])
 
 <!DOCTYPE html>
@@ -14,18 +15,27 @@
     @vite('resources/css/app.css')
 </head>
 
+<style>
+    .text-none {
+        text-decoration: none;
+    }
+</style>
+
 <body>
     <header>
         <!-- ====== Navbar Section Start -->
         <header x-data="{
             navbarOpen: false
         }"
-            class="flex w-full h-20 items-center bg-white drop-shadow-md container-fluid  shadow  ">
+            class="flex w-full h-20 items-center bg-white drop-shadow-sm container-fluid  shadow  ">
             <div class="container mx-auto">
                 <div class="relative -mx-4 flex items-center justify-between">
                     <div class="w-60 max-w-full px-4">
-                        <a href="javascript:void(0)" class="block w-full py-5 text-black  text-lg">
+                        <a href="javascript:void(0)" class="block w-full pt-2 text-black  text-lg font-semibold">
                             {{ $page }}
+                        </a>
+                        <a href="{{ route('admin.home') }}" class="block text-none w-96 pt-1 text-gray-600 text-sm">
+                            {{ $subpage }}
                         </a>
                     </div>
                     <div class="flex w-50  items-center justify-end px-4">
@@ -39,9 +49,9 @@
                             </button>
 
                             <div class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-black" href="#"
-                                    role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                    v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-black text-lg font-bold"
+                                    href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 

@@ -1,7 +1,7 @@
-<x-admin.base title="My Web | Product" page="Product">
-
+<x-admin.base title=" | Product" page="Product" subpage="Dashboard / Product">
+    @include('sweetalert::alert')
     <div class="grid grid-cols-1 gap-1 mb-4 p-5">
-        <h3 class="mb-3 ml-2 font-bold text-2xl ">Tambah Product</h3>
+        <h3 class="mb-3 ml-2 font-bold text-2xl ">Product</h3>
         <x-card-button ButtonClass="btn btn-primary m-2 mb-5 w-32" type="submit" text="Tambah" Name="button"
             url="{{ route('admin.product.create') }}">
             <i class="fa-solid fa-upload mr-2 mb-1"></i>
@@ -30,7 +30,8 @@
                                         name="edit" id="edit" url="{{ route('admin.product.edit', $p->id) }}">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </x-card-button>
-                                    <form action="{{ route('admin.product.destroy', $p->id) }}" method="post">
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                        action="{{ route('admin.product.destroy', $p->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <x-card-button button-type="submit"

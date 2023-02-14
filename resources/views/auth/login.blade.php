@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layout title="Login">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4 col-sm-4">
@@ -29,8 +27,8 @@
 
                             <div class="form-floating">
                                 <input id="password" type="password"
-                                    class="form-control  @error('password') is-invalid @enderror" name="password" required
-                                    autocomplete="current-password">
+                                    class="form-control  @error('password') is-invalid @enderror" name="password"
+                                    required autocomplete="current-password">
                                 <label for="floatingPassword">{{ __('Password') }}</label>
 
                                 @error('password')
@@ -74,4 +72,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-layout>

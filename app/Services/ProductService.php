@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Throwable;
 use App\Services\BaseService;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class ProductService extends BaseService
 {
@@ -23,45 +24,76 @@ class ProductService extends BaseService
 
     public function index(Request $request):object
     {
-        $product = $this->product->query();
-        return $this->response(true,'selamat anda berhasil',$product);
+        try{
+            $product = $this->product->query()->orderBy('nama');
+
+            return $this->response(true,'selamat anda berhasil',$product);
+        } catch (Exception $e){
+            Log::emergency($e->getMessage());
+        }
     }
 
     public function store(ProductRequest $request) : Product
     {
-        $data = $request->validated();
+        DB::begintransaction();
+        try{
+            $data = $request->validated();
 
-        if ($request->hasFile('gambar')) {
-            $this->gambarBaru = $request->file('gambar')->store('img', 'public');
-            $data['gambar'] = $this->gambarBaru;
+            if ($request->hasFile('gambar')) {
+                $this->gambarBaru = $request->file('gambar')->store('img', 'public');
+                $data['gambar'] = $this->gambarBaru;
+            }
+            $product = $this->product->create($data);
+            DB::commit();
+
+            return $product;
+        } catch (Exception $e){
+            DB::rollBack();
+            Log::emergency($e->getMessage());
         }
-        $product = $this->product->create($data);
-
-        return $product;
     }
 
     public function update(ProductRequest $request,Product $product): Product
     {
-        $data = $request->validated();
-        if ($request->hasFile('gambar')) {
-            $this->gambarBaru = $request->file('gambar')->store('img', 'public');
-            $data['gambar'] = $this->gambarBaru;
-        }
-        $gambarLama = $product->gambar;
-        $product->update($data);
-        Storage::disk('public')->delete($gambarLama);
+        DB::beginTransaction();
+        try{
+            $data = $request->validated();
+            if ($request->hasFile('gambar')) {
+                $this->gambarLama = $product->gambar;
+                $this->gambarBaru = $request->file('gambar')->store('img', 'public');
+                $data['gambar'] = $this->gambarBaru;
+            }
 
-        return $product;
+            $product->update($data);
+            DB::commit();
+            DB::afterCommit(function(){
+                Storage::disk('public')->delete($this->gambarLama);
+            });
+
+            return $product;
+        }catch (Exception $e){
+            DB::rollBack();
+            Log::emergency($e->getMessage());
+        }
     }
 
     public function destroy(Product $product)
     {
-        $gambarLama = $product->gambar;
-        $product->delete();
-        if(! empty($gambarLama) && (Storage::disk('public'))->exists($gambarLama))
-        {
-            Storage::disk('public')->delete($gambarLama);
+        DB::beginTransaction();
+        try{
+            $this->gambarLama = $product->gambar;
+            $product->delete();
+            DB::commit();
+            DB::afterCommit(function(){
+                if(! empty($this->gambarLama) && (Storage::disk('public'))->exists($this->gambarLama)){
+                    Storage::disk('public')->delete($this->gambarLama);
+                }
+            });
+
+            return $product;
+        }catch (Exception $e){
+            DB::rollBack();
+            Log::emergency($e->getMessage());
         }
-        return $product;
     }
 }

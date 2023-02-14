@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Services\ProductService;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
-
-use function GuzzleHttp\Promise\all;
+use Exception;
+use RealRashid\SweetAlert\Facades\Alert;
+use RealRashid\SweetAlert\SweetAlertServiceProvider;
 
 class ProductController extends Controller
 {
@@ -24,20 +25,26 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
-        $adminRoute = $this->adminRoute;
-        $response = $this->productService->index($request);
-        $product = $response->data->get();
-        return view($adminRoute.'index',compact(['product'],'adminRoute'));
+        try{
+            $adminRoute = $this->adminRoute;
+            $response = $this->productService->index($request);
+            $product = $response->data->get();
+
+            return view($adminRoute.'index',compact(['product'],'adminRoute'));
+        } catch (Exception $e){
+            alert('Whoops','Data not Found','errors');
+            return to_route('admin.home');
+        }
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -48,65 +55,84 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
     public function store(ProductRequest $request)
     {
-        $adminRoute = $this->adminRoute;
-        $product = $this->productService->store($request);
-        return \to_route($adminRoute.'index');
+        try{
+            $adminRoute = $this->adminRoute;
+            $response= $this->productService->store($request);
+            $product = $response->data;
+
+            return to_route($adminRoute.'index',$product)->withSuccess('Data added successfully!');
+        } catch (Exception $e){
+            alert('Whoops','Data not Found','errors');
+            return redirect()->back();
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  Product  $product
+     * @return Response
      */
     public function show(Product $product)
     {
         $adminRoute = $this->adminRoute;
-        return \view($adminRoute.'show')->with('product',$product);
+        return view($adminRoute.'show')->with('product',$product);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  Product  $product
+     * @return Response
      */
     public function edit($id)
     {
         $adminRoute = $this->adminRoute;
         $product = Product::find($id);
-        return \view($adminRoute.'edit',\compact('product'));
+        return view($adminRoute.'edit',\compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Product  $product
+     * @return Response
      */
     public function update(ProductRequest $request, Product $product)
     {
-        $adminRoute = $this->adminRoute;
-        $p = $this->productService->update($request,$product);
-        return \to_route($adminRoute.'index');
+        try{
+            $adminRoute = $this->adminRoute;
+            $this->productService->update($request,$product);
+
+            return to_route($adminRoute.'index')->withSuccess('Data added successfully!');
+        } catch (Exception $e){
+            alert('error','Your code is Error');
+            return redirect()->back();
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  Product  $product
+     * @return Response
      */
     public function destroy(Product $product)
     {
+        try{
         $adminRoute = $this->adminRoute;
-        $p = $this->productService->destroy($product);
-        return \to_route($adminRoute.'index');
+        $this->productService->destroy($product);
+
+        return to_route($adminRoute.'index')->withSuccess('Data added successfully!');
+    } catch (Exception $e){
+        alert('error','Your code is Error');
+        return redirect()->back();
     }
+}
 }
