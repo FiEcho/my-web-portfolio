@@ -76,7 +76,8 @@
         <div class="sidebar p-4" id="sidebar">
             <div class="p-2 mb-10">
                 <a href="">
-                    <img src="{{ asset('assets/image/Logo.png') }}" class="w-32" alt="" srcset="">
+                    <img src="{{ asset('assets/image/Logo.png') }}" class="w-32 logo-name" alt=""
+                        srcset="">
                 </a>
             </div>
             <li>

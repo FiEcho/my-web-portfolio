@@ -1,4 +1,4 @@
-<x-admin.base title=" | Edit | Profile" page="Profile" subpage="Dashboard / Product / Edit Profile"
+<x-Base title=" | Edit | Profile" page="Profile" subpage="Dashboard / Product / Edit Profile"
     mainClass1="card shadow m-5 border-none p-3" mainClass="card-body">
     <div class="container">
         <h3 class="mb-3 ml-2 font-bold text-2xl ">Edit Profile</h3>
@@ -8,4 +8,4 @@
             @include('Admin.profile.form-edit')
         </form>
     </div>
-</x-admin.base>
+</x-Base>
