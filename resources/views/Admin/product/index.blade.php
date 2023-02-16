@@ -1,4 +1,4 @@
-<x-admin.base title=" | Product" page="Product" subpage="Dashboard / Product">
+<x-Base title=" | Product" page="Product" subpage="Dashboard / Product">
     @include('sweetalert::alert')
     <div class="grid grid-cols-1 gap-1 mb-4 p-5">
         <h3 class="mb-3 ml-2 font-bold text-2xl ">Product</h3>
@@ -50,4 +50,4 @@
     </div>
 
 
-</x-admin.base>
+</x-Base>
