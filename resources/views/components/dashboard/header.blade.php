@@ -30,7 +30,10 @@
             class="flex w-full h-20 items-center bg-white drop-shadow-sm container-fluid  shadow  ">
             <div class="container mx-auto">
                 <div class="relative -mx-4 flex items-center justify-between">
-                    <div class="w-60 max-w-full px-4">
+                    <div class="-mr-48">
+                        {{ $slot }}
+                    </div>
+                    <div class="w-60 max-w-full">
                         <a href="javascript:void(0)" class="block w-full pt-2 text-black  text-lg font-semibold">
                             {{ $page }}
                         </a>
